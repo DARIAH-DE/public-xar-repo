@@ -2,7 +2,8 @@
 <meta xmlns="http://exist-db.org/xquery/repo">
     <description>Scripts to maintain eXist's public application repository.</description>
     <author>Wolfgang Meier</author>
-    <website>https://github.com/eXist-db/public-xar-repo</website>
+    <author>Mathias Göbel</author>
+    <website>https://github.com/DARIAH-DE/public-xar-repo</website>
     <status>alpha</status>
     <license>GNU-LGPL</license>
     <copyright>true</copyright>
@@ -10,7 +11,7 @@
     <target>public-repo</target>
     <prepare>pre-install.xql</prepare>
     <finish>post-install.xql</finish>
-    <permissions xmlns:repo="http://exist-db.org/xquery/repo" user="repo" group="repo" mode="rw-rw-r--"/>
+    <permissions user="repo" group="repo" mode="rw-rw-r--"/>
     <changelog>
         <change version="0.6.0">
             <ul xmlns="http://www.w3.org/1999/xhtml">
