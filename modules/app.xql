@@ -39,7 +39,8 @@ declare function app:view-package($node as node(), $model as map(*), $mode as xs
 };
 
 declare function app:package-to-list-item($app as element(app), $show-details as xs:boolean) {
-    let $repoURL := concat(substring-before(request:get-uri(), 'public-repo/'), 'public-repo/')
+(:    let $repoURL := concat(substring-before(request:get-uri(), 'public-repo/'), 'public-repo/'):)
+    let $repoURL := ""
     let $icon :=
         if ($app/icon) then
             if ($app/@status) then
@@ -50,7 +51,7 @@ declare function app:package-to-list-item($app as element(app), $show-details as
             $repoURL || "resources/images/package.png"
     let $download-url := concat($repoURL, 'public/', $app/@path)
     let $info-url := 
-        concat($repoURL, 'packages/', $app/abbrev, '.html', 
+        concat($repoURL, 'packages.html?package-id=', $app/abbrev, 
             if ($app/requires/@*[not(name() = 'processor')]) then 
                 concat('?eXist-db-min-version=', ($app/requires/@version, $app/requires/@semver-min)[1])
             else
