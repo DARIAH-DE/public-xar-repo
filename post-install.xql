@@ -18,7 +18,7 @@ declare function local:mkcol-recursive($collection, $components) {
     if (exists($components)) then
         let $newColl := concat($collection, "/", $components[1])
         return (
-            xdb:create-collection($collection, $components[1]),
+            xmldb:create-collection($collection, $components[1]),
             local:mkcol-recursive($newColl, subsequence($components, 2))
         )
     else
@@ -43,15 +43,15 @@ declare function local:get-repo-dir() {
 };
 
 declare function local:copy-previous-public-from-temp-or-create() {
-if (xdb:collection-available("/db/temp/public")) then
-  let $copy-dummy := xdb:copy("/db/temp/public", $target)
-  return xdb:remove("/db/temp/public")
+if (xmldb:collection-available("/db/temp/public")) then
+  let $copy-dummy := xmldb:copy("/db/temp/public", $target)
+  return xmldb:remove("/db/temp/public")
 else
   local:mkcol($target, "public")
 };
 
 system:as-user("repo", "repo", (
     local:copy-previous-public-from-temp-or-create(),
-    xdb:store-files-from-pattern(concat($target, "/public"), local:get-repo-dir(), "*.xar"),
+    xmldb:store-files-from-pattern(concat($target, "/public"), local:get-repo-dir(), "*.xar"),
     scanrepo:scan()
 ))

@@ -15,7 +15,7 @@ declare function local:mkcol-recursive($collection, $components) {
     if (exists($components)) then
         let $newColl := concat($collection, "/", $components[1])
         return (
-            xdb:create-collection($collection, $components[1]),
+            xmldb:create-collection($collection, $components[1]),
             local:mkcol-recursive($newColl, subsequence($components, 2))
         )
     else
@@ -29,8 +29,8 @@ declare function local:mkcol($collection, $path) {
 
 declare function local:copy-current-public-to-temp() {
 local:mkcol("/db/", "temp"),
-if (xdb:collection-available(concat($target, "/public"))) then
-  xdb:copy(concat($target, "/public"), "/db/temp/")
+if (xmldb:collection-available(concat($target, "/public"))) then
+  xmldb:copy(concat($target, "/public"), "/db/temp/")
 else
   ()
 };
