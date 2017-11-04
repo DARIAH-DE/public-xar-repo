@@ -17,8 +17,9 @@
         <mkdir dir="${build}"/>
         <copy file="expath-pkg.xml.tmpl" tofile="expath-pkg.xml" filtering="true" overwrite="true">
             <filterset>
-                <filter token="project.name" value="${project.name}"/>
-                <filter token="project.version" value="${project.version}"/>
+              <filter token="project.name" value="${project.name}"/>
+              <filter token="project.flavour" value="${project.flavour}"/>
+              <filter token="project.version" value="${project.version}"/>
             </filterset>
         </copy>
         <zip destfile="${build}/${project.name}-${project.version}${git.commit}.xar">
