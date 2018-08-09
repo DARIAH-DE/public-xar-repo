@@ -53,7 +53,7 @@ declare function app:package-to-list-item($app as element(app), $show-details as
     let $info-url := 
         concat($repoURL, 'packages.html?package-id=', $app/abbrev, 
             if ($app/requires/@*[not(name() = 'processor')]) then 
-                concat('?eXist-db-min-version=', ($app/requires/@version, $app/requires/@semver-min)[1])
+                concat('&amp;eXist-db-min-version=', ($app/requires/@version, $app/requires/@semver-min)[1])
             else
                 ()
         )
