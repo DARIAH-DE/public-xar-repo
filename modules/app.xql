@@ -1,4 +1,4 @@
-xquery version "3.0";
+xquery version "3.1";
 
 module namespace app="http://exist-db.org/xquery/app";
 
@@ -87,6 +87,16 @@ declare function app:package-to-list-item($app as element(app), $show-details as
                         <tr>
                             <td>Size:</td>
                             <td>{ $app/@size idiv 1024 }k</td>
+                        </tr>
+                        <tr>
+                            <td>Uploadtime:</td>
+                            <td>{
+                                let $pathToken := $app/base-uri() => tokenize("/")
+                                let $collection-uri := $pathToken[position() lt last()] => string-join("/")
+                                let $resource := $pathToken[last()]
+                                return
+                                    xmldb:last-modified($collection-uri, $resource)
+                            }</td>
                         </tr>
                         {
                         if ($app/requires) then
