@@ -13,6 +13,12 @@
     <finish>post-install.xql</finish>
     <permissions user="repo" group="repo" mode="rw-rw-r--"/>
     <changelog>
+        <change version="0.6.1">
+          <ul xmlns="http://www.w3.org/1999/xhtml">
+              <li>Shows upload date at details view.</li>
+              <li>Fixes an error at package details view.</li>
+          </ul>
+        </change>
         <change version="0.6.0">
             <ul xmlns="http://www.w3.org/1999/xhtml">
                 <li>Allow processor version to end with a label, for compatibility with eXist 3.1.0+ semver scheme.</li>
