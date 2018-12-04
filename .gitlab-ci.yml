@@ -1,0 +1,19 @@
+image: frekele/ant
+
+stages:
+  - build
+  - deploy
+
+ant:
+  stage: build
+  script:
+    - ant
+  artifacts:
+    paths:
+      - build/*.xar
+
+upload:
+  stage: deploy
+  script:
+    - FILENAME=$(ls build/*.xar)
+    - curl -u ci:${EXIST_UPLOAD_PW} -X POST -F file=@${FILENAME} https://ci.de.dariah.eu/exist-upload
